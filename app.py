@@ -8,7 +8,7 @@ def create_app(test_config=None):
     def hello():
         
     
-        return app
+        return "Hello, World!"
 
 if __name__ == "__main__":
     app = create_app()
