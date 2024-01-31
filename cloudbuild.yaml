@@ -2,7 +2,7 @@ steps:
 
   # ! build
   # installation des dépendances joués sur cloud build
-  - name: install dépendances python
+  - name: python
   # nom du programme en entrée
     entrypoint: pip
     args: ["install", "-r", "requirements.txt", "--user"]
