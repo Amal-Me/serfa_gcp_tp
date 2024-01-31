@@ -36,4 +36,17 @@ steps:
       - "europe-west1-docker.pkg.dev/helpful-silo-412810/serfa-gcp-tp/flasksample:$SHORT_SHA"
     id: Push
     
-    # TODO deployer cette image en tant que service Cloud Run
+      # TODO deployer cette image en tant que service Cloud Run
+  # déploiement sur Google Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk:slim"
+    args:
+      - run
+      - services
+      - update
+      - serfa-gcp-tp
+      - "--platform=managed"
+      - "--europe-west1-docker.pkg.dev/helpful-silo-412810/serfa-gcp-tp/flasksample:$SHORT_SHA"
+      - "--region=europe-west1"
+      - "--quiet"
+    id: Deploy
+    entrypoint: gcloud
