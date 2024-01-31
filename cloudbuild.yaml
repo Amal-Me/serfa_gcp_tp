@@ -3,11 +3,16 @@ steps:
   # ! build
   # installation des dépendances joués sur cloud build
   - name: python
+  # nom du programme à l'entrée
     entrypoint: pip
     args: ["install", "-r", "requirements.txt", "--user"]
     id: "Install"
 
     # ! test
+  - name: python
+    entrypoint: python
+    args: ["-m", "pytest" ]
+    id: "Test"
     # TODO
 
     # ! deploy
