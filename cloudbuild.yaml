@@ -9,7 +9,7 @@ steps:
     id: "Install"
 
     # ! test
-  - name: 'test python' 
+  - name: python 
     entrypoint: python
     args: ["-m", "pytest" ]
     id: "Test"
