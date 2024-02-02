@@ -25,10 +25,12 @@ RUN pip install -r requirements.txt
 
 # on va copier le code de l'applicatreion
 COPY ./app.py .
+COPY ./test_app.py
 
 # on met en place les variables d'environnement pour le debug
 ENV FLASK_ENV=development
-ENV FLASK_APP=app.py   
+ENV FLASK_APP=app.py
+
 
 # `CMD` signifie "lance cette commande quand le container est lancé"
 # `sh -c` => "j'ouvre une shell et je lui passe la commande suivante"
