@@ -18,6 +18,6 @@ jobs:
           # permet de cloner le dépot et de l'ouvrir (actions/checkout@v4 > nom de l'action)
             - uses: actions/checkout@v4
             - name: build
-            # 'run' avec | permet d'écrire plusieurs commandes à la suite
-            - run: | 
-              echo "BUILD"
+           # `run` avec le caractère `|` permet d'écrire plusieurs commandes à la suite
+              run: |
+                echo "BUILD"
