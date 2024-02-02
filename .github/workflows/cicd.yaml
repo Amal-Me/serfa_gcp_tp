@@ -17,7 +17,11 @@ jobs:
         steps:
           # permet de cloner le dépot et de l'ouvrir (actions/checkout@v4 > nom de l'action)
             - uses: actions/checkout@v4
-            - name: build
+            - name: build-and-test
            # `run` avec le caractère `|` permet d'écrire plusieurs commandes à la suite
               run: |
-                echo "BUILD"
+                echo "BUILD and TEST"
+                pip install -r requierements.txt
+                python -m pytest
+
+    
