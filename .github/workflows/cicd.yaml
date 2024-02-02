@@ -1,29 +1,31 @@
 name: 4.3 module example 1 CICD pipeline
 
-#déclenchement du pipeline
-#contrairement à GCP configurable d'ici
+# ici vous avez le déclencheur de votre pipeline;
+# contrairement à Google Cloud Build, vous pouvez le configurer d'ici
 on:
   push:
     branches: ["main"]
 
-#étapes du pipeline
+# les "jobs" sont les étapes de votre pipeline
 jobs:
 
-  #première étape qu'on peut nommer arbitrairement
-    build:      
-      #description du type de machine sur laquelle on veut run une étape
+    # CONTINUOUS INTEGRATION
+    # votre prémière étape, que vous pouvez nommer arbitrairement
+    build-and-test:
+        # on décrit le type de machine sur lequel on veut run une étape
         runs-on: ubuntu-latest
-      #détails de l'étape
         steps:
-          # permet de cloner le dépot et de l'ouvrir (actions/checkout@v4 > nom de l'action)
+            # nom complet de l'action GitHub qui permet de cloner le repo
+            # https://github.com/marketplace?type=actions
             - uses: actions/checkout@v4
             - name: build-and-test
-           # `run` avec le caractère `|` permet d'écrire plusieurs commandes à la suite
+              # `run` avec le caractère `|` permet d'écrire plusieurs commandes à la suite
               run: |
-                docker build -t new-image:latest -f Dockerfile .
-                docker run new-image:latest bash -c "python -m pytest"
-                
-     # CONTINUOUS DEPLOYMENT
+                echo "BUILD AND TEST"
+                docker build -t serfagcp:latest .
+                docker run serfagcp:latest bash -c "python -m pytest"
+
+    # CONTINUOUS DEPLOYMENT
     push-image-to-gar:
       runs-on: ubuntu-latest
       # permet d'éviter les race conditions
